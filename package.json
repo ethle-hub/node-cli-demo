@@ -1,0 +1,20 @@
+{
+  "name": "node-cli-demo",
+  "version": "1.0.0",
+  "description": "trying out https://www.twilio.com/blog/how-to-build-a-cli-with-node-js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ethle-hub/node-cli-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ethle-hub/node-cli-demo/issues"
+  },
+  "homepage": "https://github.com/ethle-hub/node-cli-demo#readme"
+}
