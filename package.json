@@ -1,8 +1,15 @@
 {
   "name": "node-cli-demo",
   "version": "1.0.0",
-  "description": "trying out https://www.twilio.com/blog/how-to-build-a-cli-with-node-js",
+  "description": "A CLI to bootstrap my new projects at https://www.twilio.com/blog/how-to-build-a-cli-with-node-js",
   "main": "index.js",
+  "bin": {
+    "@node-cli-demo/create-project": "bin/create-project",
+    "create-project": "bin/create-project"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,11 +17,17 @@
     "type": "git",
     "url": "git+https://github.com/ethle-hub/node-cli-demo.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "cli",
+    "create-project"
+  ],
+  "author": "eleth-hub",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ethle-hub/node-cli-demo/issues"
   },
-  "homepage": "https://github.com/ethle-hub/node-cli-demo#readme"
+  "homepage": "https://github.com/ethle-hub/node-cli-demo#readme",
+  "devDependencies": {
+    "esm": "^3.2.25"
+  }
 }

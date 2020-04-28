@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+// first, require a module called esm that enables us to use import in the other files
+require = require('esm')(module /*, options*/);
+
+// then, require our cli.js and pass in the arguments from the command line
+require('../src/cli').cli(process.argv);
