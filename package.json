@@ -28,6 +28,8 @@
   },
   "homepage": "https://github.com/ethle-hub/node-cli-demo#readme",
   "devDependencies": {
-    "esm": "^3.2.25"
+    "arg": "^4.1.3",
+    "esm": "^3.2.25",
+    "inquirer": "^7.1.0"
   }
 }
