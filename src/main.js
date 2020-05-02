@@ -8,7 +8,7 @@ const access = promisify(fs.access);
 const copy = promisify(ncp);
 
 async function copyTemplateFiles(options) {
- return copy(options.templateDirectory, options.targetDirectory, {
+ return await copy(options.templateDirectory, options.targetDirectory, {
    clobber: false,
  });
 }
@@ -19,27 +19,34 @@ export async function createProject(options) {
    targetDirectory: options.targetDirectory || process.cwd(),
  };
 
- const currentFileUrl = import.meta.url;
+ const currentFileUrl = __dirname; // as 'import.meta.url' has extra 'C:\' at beginning
  const templateDir = path.resolve(
    new URL(currentFileUrl).pathname,
-   '../../templates',
+   '../templates',
    options.template.toLowerCase()
  ); 
  options.templateDirectory = templateDir;
-
+ 
  // 1) checking read access
- try {
-   await access(templateDir, fs.constants.R_OK);    
- } catch (err) {
-     // somehow the templateDir has extra 'C:\' at beginning
-   console.error(`%s Invalid template name => path=${templateDir}`, chalk.red.bold('ERROR'));
+ 
+console.log(`%s Checking read acces path=${templateDir}`, chalk.cyan('INFO'));   
+await access(templateDir, fs.constants.R_OK)
+  .catch ( error => {     
+   console.error(`%s Invalid template name at ${templateDir}`, chalk.red.bold('ERROR'));
    process.exit(1);
- }
+  });
 
  // 2) then copy the files into the target directory using ncp
- console.log('Copy project files');
- await copyTemplateFiles(options);
+ console.log(`%s Copy project files from=${options.templateDirectory} to=${options.targetDirectory}`, chalk.cyan('INFO'));
 
+
+ await copyTemplateFiles(options)
+  .catch(error => { 
+    console.log(`%s ${error.message}`, chalk.red.bold('ERROR')); 
+    process.exit(1);
+  });
+
+  
  console.log('%s Project ready', chalk.green.bold('DONE'));
  return true;
 }
